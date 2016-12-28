@@ -44,6 +44,9 @@ public class BannerView extends RelativeLayout {
     private int mIndicatorMarginTop = 0;
     private int mIndicatorMarginRight = 0;
     private int mIndicatorMarginBottom = 0;
+
+    /*指示器大小*/
+    private int mIndicatorSize = 8;
     private MyHandler mHandler = new MyHandler();
     private View mViewRoot;
     private ImageLoadCallback mCallback;
@@ -132,7 +135,8 @@ public class BannerView extends RelativeLayout {
         mLlIndicationContainer.removeAllViews();
 
         View vIndicator = null;
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(20, 20);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams((int) dipToPx(getContext(), mIndicatorSize)
+                , (int) dipToPx(getContext(), mIndicatorSize));
         layoutParams.setMargins(mIndicatorMarginLeft, mIndicatorMarginTop, mIndicatorMarginRight, mIndicatorMarginBottom);
         for (int i = 0; i < mList.size(); i++) {
             vIndicator = new View(getContext());
@@ -213,6 +217,16 @@ public class BannerView extends RelativeLayout {
         this.mIndicatorMarginBottom = indicatorMarginBottom;
         addIndication();
 
+    }
+
+    /**
+     * 设置指示器大小
+     *
+     * @param indicatorSize
+     */
+    public void setIndicatorSize(int indicatorSize) {
+        this.mIndicatorSize = indicatorSize;
+        addIndication();
     }
 
     /**
