@@ -24,4 +24,4 @@
             });
 
 
-<img src="https://github.com/123ufo/BannerView/screenshot/1.gif?raw=true" width="280"/>
+<img src="https://github.com/123ufo/BannerView/blob/master/screenshot/1.gif?raw=true" width="280"/>
