@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class FunctionActivity extends AppCompatActivity {
+public class RefreshDataActivity extends AppCompatActivity {
     private String[] oldsArr = new String[]{"http://www.fansimg.com/album/uploads2010/07/userid288504time20100724100218.jpg"
             , "http://pic23.nipic.com/20120919/8426898_213054250127_2.jpg"
             , "http://img4.imgtn.bdimg.com/it/u=3079979485,2899984191&fm=214&gp=0.jpg"
@@ -74,7 +74,7 @@ public class FunctionActivity extends AppCompatActivity {
     private class MyImageLoadCallback implements ImageLoadCallback {
         @Override
         public void loadImage(ImageView imageView, String imgUrl) {
-            ImageLoader.loadAvatar(FunctionActivity.this, imageView, imgUrl);
+            ImageLoader.loadAvatar(RefreshDataActivity.this, imageView, imgUrl);
         }
     }
 
@@ -84,7 +84,7 @@ public class FunctionActivity extends AppCompatActivity {
     private class MyOnBannerViewClickListener implements BannerView.OnBannerViewClickListener {
         @Override
         public void onItemClick(View view, int position) {
-            Toast.makeText(FunctionActivity.this, position + "", Toast.LENGTH_SHORT).show();
+            Toast.makeText(RefreshDataActivity.this, position + "", Toast.LENGTH_SHORT).show();
         }
     }
 

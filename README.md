@@ -26,5 +26,5 @@
 
 #####具体更多功能请参照项目里的Demo(app)
 
-<img src="https://github.com/123ufo/BannerView/blob/master/screenshot/1.gif?raw=true" width="280"/>
+<img src="https://github.com/123ufo/BannerView/blob/master/screenshot/2.gif?raw=true" width="280"/>
 

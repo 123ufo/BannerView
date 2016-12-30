@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_screen_all"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ufo.bannerview.ScreenAllActivity">
+
+    <com.ufo.libs.BannerView
+        android:id="@+id/bannerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.ufo.libs.BannerView>
+
+</LinearLayout>

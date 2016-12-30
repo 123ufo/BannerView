@@ -15,12 +15,66 @@
 
     </com.ufo.libs.BannerView>
 
-    <Button
-        android:id="@+id/btn"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
-        android:text="更多功能"/>
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/btn_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="隐藏指示器"/>
+
+            <Button
+                android:id="@+id/btn_indicator_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="指示器大小"/>
+
+            <Button
+                android:id="@+id/btn_switch_delay_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="页面切换时间间隔5秒"/>
+
+            <Button
+                android:id="@+id/btn_switch_delay_time_"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="页面切换时间间隔1秒"/>
+
+            <Button
+                android:id="@+id/btn_stop_and_start"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="开始暂停"/>
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="刷新数据"/>
+
+            <Button
+                android:id="@+id/btn_screen_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="全屏显示"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

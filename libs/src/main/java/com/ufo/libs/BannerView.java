@@ -9,7 +9,6 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -27,19 +26,50 @@ import java.util.List;
  * <p>
  * <p>
  * 描述：自定义轮播图
+ * <p>
+ * 用法：
+ * <p>
+ * .xml
+ * <com.ufo.libs.BannerView
+ * android:id="@+id/bannerView"
+ * android:layout_width="match_parent"
+ * android:layout_height="200dp">
+ * <p>
+ * </com.ufo.libs.BannerView>
+ * <p>
+ * <p>
+ * .java
+ * <p>
+ * BannerView bannerView = (BannerView) findViewById(R.id.bannerView);
+ * bannerView.setData(mList, new ImageLoadCallback() {
+ *
+ * @Override public void loadImage(ImageView imageView, String imgUrl) {
+ * //自已实现的图片加载
+ * ImageLoader.loadAvatar(MainActivity.this,imageView,imgUrl);
+ * }
+ * });
  */
 
 public class BannerView extends RelativeLayout {
 
     private static final String TAG = "BannerView";
-
     private CanClickViewPager mViewPager;
     private LinearLayout mLlIndicationContainer;
     private List<String> mList = new ArrayList<>();
     private BannerViewAdapter mAdapter;
-    /*默认的滚动时间间隔*/
+    private MyHandler mHandler = new MyHandler();
+    private View mViewRoot;
+    private ImageLoadCallback mCallback;
+    private OnBannerViewClickListener mBannerViewClickListener;
+    private OnBannerScrollListener mBannerScrollListener;
+
+    /*默认的滚动时间间隔2秒*/
     private long delayTime = 1000 * 2;
 
+    /*debug*/
+    private boolean isDebug = false;
+
+    /*指示器点的上下左右 margin值*/
     private int mIndicatorMarginLeft = 0;
     private int mIndicatorMarginTop = 0;
     private int mIndicatorMarginRight = 0;
@@ -47,11 +77,6 @@ public class BannerView extends RelativeLayout {
 
     /*指示器大小*/
     private int mIndicatorSize = 8;
-    private MyHandler mHandler = new MyHandler();
-    private View mViewRoot;
-    private ImageLoadCallback mCallback;
-    private FrameLayout.LayoutParams mRootViewLp;
-    private OnBannerViewClickListener mBannerViewClickListener;
 
 
     public BannerView(Context context) {
@@ -75,23 +100,6 @@ public class BannerView extends RelativeLayout {
 
         //默认指示器之间的距离
         mIndicatorMarginRight = (int) dipToPx(getContext(), 5);
-
-
-    }
-
-    @Override
-    protected void onFinishInflate() {
-
-        int height;
-        height = getHeight();
-        Log.d(TAG, height + "  :height");
-    }
-
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        int height;
-        height = getHeight();
-        Log.d(TAG, height + "  :height size");
     }
 
     /**
@@ -177,12 +185,21 @@ public class BannerView extends RelativeLayout {
     }
 
     /**
+     * 是否显示指示器，默认是显示的
+     *
+     * @param invisible
+     */
+    public void setInvisibleIndicator(boolean invisible) {
+        mLlIndicationContainer.setVisibility(invisible ? View.INVISIBLE : View.VISIBLE);
+    }
+
+    /**
      * dip转Px
      *
      * @param dip
      * @return
      */
-    public static float dipToPx(Context context, int dip) {
+    private static float dipToPx(Context context, int dip) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
     }
 
@@ -230,6 +247,15 @@ public class BannerView extends RelativeLayout {
     }
 
     /**
+     * 获取当前指示器的大小
+     *
+     * @return
+     */
+    public int getIndicatorSize() {
+        return this.mIndicatorSize;
+    }
+
+    /**
      * 设置页面切换的时间间隔单位是毫秒，默认是2000毫秒
      *
      * @param time
@@ -238,10 +264,22 @@ public class BannerView extends RelativeLayout {
         this.delayTime = time;
     }
 
+    /**
+     * log
+     *
+     * @param msg
+     */
+    private void log(String msg) {
+        if (isDebug) {
+            Log.d(TAG, msg);
+        }
+    }
+
+
     private class MyOnCanClickViewPagerListener implements CanClickViewPager.OnCanClickViewPagerListener {
         @Override
         public void onClick(View view, int position) {
-            Log.d(TAG, "click: " + (mViewPager.getCurrentItem() % mList.size()));
+            log("click: " + (mViewPager.getCurrentItem() % mList.size()));
             if (null != mBannerViewClickListener) {
                 mBannerViewClickListener.onItemClick(view, mViewPager.getCurrentItem() % mList.size());
             }
@@ -261,7 +299,9 @@ public class BannerView extends RelativeLayout {
         public void onPageSelected(int position) {
             int realPosition = position % mList.size();
             selectCurrentIndicator(realPosition);
-//            Log.d(TAG, realPosition + "");
+            if (null != mBannerScrollListener) {
+                mBannerScrollListener.onPagerSelected(realPosition);
+            }
         }
 
         @Override
@@ -287,18 +327,27 @@ public class BannerView extends RelativeLayout {
         @Override
         public void onPress() {
             mHandler.removeCallbacksAndMessages(null);
-            Log.d(TAG, "按下");
+            log("按下");
         }
 
         @Override
         public void onUP() {
             nextPager();
-            Log.d(TAG, "松开");
+            log("松开");
         }
     }
 
+    /**
+     * 设置轮播图item点击事件
+     *
+     * @param clickListener
+     */
     public void setOnBannerViewClickListener(OnBannerViewClickListener clickListener) {
         this.mBannerViewClickListener = clickListener;
+    }
+
+    public void setOnBannerScrollListener(OnBannerScrollListener scrollListener) {
+        this.mBannerScrollListener = scrollListener;
     }
 
     /**
@@ -306,5 +355,12 @@ public class BannerView extends RelativeLayout {
      */
     public interface OnBannerViewClickListener {
         void onItemClick(View view, int position);
+    }
+
+    /**
+     * BannerView滚动监听接口
+     */
+    public interface OnBannerScrollListener {
+        void onPagerSelected(int position);
     }
 }
