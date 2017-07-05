@@ -1,5 +1,7 @@
 ###BannerView是一个常用的轮播图控件，只需要三行java代码就能实现
 
+#### Gradle compile dependency:
+    compile 'com.123ufo:BannerView:1.0'
 
 ##.xml
 
