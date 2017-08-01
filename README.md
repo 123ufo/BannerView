@@ -14,9 +14,7 @@
         <com.ufo.libs.BannerView
             android:id="@+id/bannerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
-
-        </com.ufo.libs.BannerView>
+            android:layout_height="200dp"/>
 ```
 
 ### java
