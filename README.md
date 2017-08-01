@@ -1,21 +1,25 @@
-###BannerView是一个常用的轮播图控件，只需要三行java代码就能实现
+## BannerView是一个常用的轮播图控件，只需要三行java代码就能实现
 
-#### Gradle compile dependency:
+<img src="https://github.com/123ufo/BannerView/blob/master/screenshot/2.gif?raw=true" width="280"/>
+
+### Add Gradle dependency:
+
+```
     compile 'com.123ufo:BannerView:1.0'
+```
 
-##.xml
+### xml布局
 
+```xml
         <com.ufo.libs.BannerView
             android:id="@+id/bannerView"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="200dp"/>
+```
 
-        </com.ufo.libs.BannerView>
+### java
 
-
-##.java
-
-
+```java
      BannerView bannerView = (BannerView) findViewById(R.id.bannerView);
             bannerView.setData(mList, new ImageLoadCallback() {
                 @Override
@@ -24,9 +28,6 @@
                     ImageLoader.loadAvatar(MainActivity.this,imageView,imgUrl);
                 }
             });
+```
 
-
-#####具体更多功能请参照项目里的Demo(app)
-
-<img src="https://github.com/123ufo/BannerView/blob/master/screenshot/2.gif?raw=true" width="280"/>
-
+### 具体更多功能请参照项目里的Demo(app)
