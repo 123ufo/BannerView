@@ -1,16 +1,15 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'//添加
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
     buildTypes {
@@ -23,9 +22,17 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+}
+
+//9d54a05d66e6fb4bfb89a08b53c39d5ae1707a84
+//$ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
+//添加
+publish {
+    userOrg = '123ufo'//bintray.com用户名
+    groupId = 'com.123ufo'//jcenter上的路径
+    artifactId = 'BannerView'//项目名称
+    publishVersion = '1.0'//版本号
+    desc = '三行代码实现轮播图 One need only three lines of code can be achieved by figure of libs'//描述，不重要
+    website = 'https://github.com/123ufo/BannerView'//网站，不重要；尽量模拟github上的地址，例如我这样的；当然你有地址最好了
 }

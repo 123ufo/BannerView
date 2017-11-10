@@ -21,29 +21,21 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2016/12/28.
- * <p>
  * 作者：xudiwei
- * <p>
- * <p>
  * 描述：自定义轮播图
- * <p>
  * 用法：
  * <p>
  * .xml
- * <com.ufo.libs.BannerView
+ * com.ufo.libs.BannerView
  * android:id="@+id/bannerView"
  * android:layout_width="match_parent"
- * android:layout_height="200dp">
- * <p>
- * </com.ufo.libs.BannerView>
- * <p>
- * <p>
+ * ...
+ *
  * .java
- * <p>
  * BannerView bannerView = (BannerView) findViewById(R.id.bannerView);
  * bannerView.setData(mList, new ImageLoadCallback() {
  *
- * @Override public void loadImage(ImageView imageView, String imgUrl) {
+ * public void loadImage(ImageView imageView, String imgUrl) {
  * //自已实现的图片加载
  * ImageLoader.loadAvatar(MainActivity.this,imageView,imgUrl);
  * }

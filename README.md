@@ -1,9 +1,9 @@
-###BannerView是一个常用的轮播图控件，只需要三行java代码就能实现
+### BannerView是一个常用的轮播图控件，只需要三行java代码就能实现
 
 #### Gradle compile dependency:
     compile 'com.123ufo:BannerView:1.0'
 
-##.xml
+## .xml
 
         <com.ufo.libs.BannerView
             android:id="@+id/bannerView"
@@ -13,7 +13,7 @@
         </com.ufo.libs.BannerView>
 
 
-##.java
+## .java
 
 
      BannerView bannerView = (BannerView) findViewById(R.id.bannerView);
@@ -26,7 +26,7 @@
             });
 
 
-#####具体更多功能请参照项目里的Demo(app)
+##### 具体更多功能请参照项目里的Demo(app)
 
 <img src="https://github.com/123ufo/BannerView/blob/master/screenshot/2.gif?raw=true" width="280"/>
 
