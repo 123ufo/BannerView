@@ -25,8 +25,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
 }
 
-//9d54a05d66e6fb4bfb89a08b53c39d5ae1707a84
-//$ ./gradlew clean build bintrayUpload -PbintrayUser=BINTRAY_USERNAME -PbintrayKey=BINTRAY_KEY -PdryRun=false
 //添加
 publish {
     userOrg = '123ufo'//bintray.com用户名
